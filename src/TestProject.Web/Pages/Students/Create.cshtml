@@ -1,0 +1,69 @@
+@page
+@model TestProject.Web.Pages.Students.CreateModel
+@{
+    ViewData["Title"] = "Add New Student";
+    Layout = "_MyLayout";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4><i class="fas fa-user-plus"></i> Add New Student</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" asp-for="Input.FullName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Date of Birth *</label>
+                                <input type="date" class="form-control" asp-for="Input.DateOfBirth" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" asp-for="Input.PhoneNumber" 
+                                       placeholder="0901234567">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-control" asp-for="Input.Email" 
+                                   placeholder="student@email.com" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" asp-for="Input.Address" 
+                                      rows="2" placeholder="Enter full address"></textarea>
+                        </div>
+                        
+                        @if (!string.IsNullOrEmpty(Model.Message))
+                        {
+                            <div class="alert alert-success">
+                                <i class="fas fa-check-circle"></i> @Model.Message
+                            </div>
+                        }
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Student
+                            </button>
+                            <a href="/Students" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

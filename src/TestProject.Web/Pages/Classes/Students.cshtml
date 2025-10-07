@@ -1,0 +1,71 @@
+@page
+@model TestProject.Web.Pages.Classes.StudentsModel
+@{
+    ViewData["Title"] = "Class Students";
+    Layout = "_MyLayout";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1><i class="fas fa-users"></i> Students in @Model.ClassName</h1>
+            <p class="text-muted">Total: @Model.Students.Count students</p>
+        </div>
+        <div>
+            <a href="/Classes/AddStudent?classId=@Model.ClassId" class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Add Student
+            </a>
+            <a href="/Classes" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+    
+    @if (Model.Students.Count == 0)
+    {
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> No students in this class yet.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Date of Birth</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Enrollment Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(int i = 0; i < Model.Students.Count; i++)
+                    {
+                        var student = Model.Students[i];
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@student.FullName</td>
+                            <td>@student.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                            <td>@student.Email</td>
+                            <td>@student.PhoneNumber</td>
+                            <td>@student.EnrollmentDate.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <form method="post" style="display: inline;">
+                                    <input type="hidden" name="studentId" value="@student.StudentId" />
+                                    <button type="submit" class="btn btn-danger btn-sm" 
+                                            onclick="return confirm('Remove this student from class?')">
+                                        <i class="fas fa-trash"></i> Remove
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

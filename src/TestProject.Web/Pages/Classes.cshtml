@@ -1,0 +1,46 @@
+@page
+@model TestProject.Web.Pages.ClassesModel
+@{
+    ViewData["Title"] = "Class Management";
+    Layout = "_MyLayout";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="fas fa-school"></i> Class Management</h1>
+        <a href="/Classes/Create" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add New Class
+        </a>
+    </div>
+    
+    <div class="row">
+        @foreach(var classItem in Model.Classes)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@classItem.Name</h5>
+                        <p class="card-text text-muted">@classItem.Description</p>
+                        <p><strong>School Year:</strong> @classItem.SchoolYear</p>
+                        <p><strong>Max Students:</strong> @classItem.MaxStudents</p>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <a href="/Classes/Students?classId=@classItem.Id" class="btn btn-info btn-sm">
+                            <i class="fas fa-users"></i> View Students
+                        </a>
+                        <a href="/Classes/Edit?id=@classItem.Id" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <form method="post" style="display: inline;">
+                            <input type="hidden" name="id" value="@classItem.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm" 
+                                    onclick="return confirm('Delete this class?')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

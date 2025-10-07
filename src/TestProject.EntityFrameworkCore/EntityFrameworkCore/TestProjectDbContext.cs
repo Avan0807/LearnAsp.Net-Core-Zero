@@ -27,7 +27,9 @@ public class TestProjectDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
     public DbSet<Product> Products { get; set; }  // ← Sửa: đưa vào trong class
-
+    public DbSet<Class> Classes { get; set; }        // ← Thêm
+    public DbSet<Student> Students { get; set; }     // ← Thêm
+    public DbSet<ClassStudent> ClassStudents { get; set; } // ← Thêm
     #region Entities from the modules
 
     //Identity
