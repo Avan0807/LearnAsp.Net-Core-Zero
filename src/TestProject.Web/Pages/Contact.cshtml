@@ -1,0 +1,79 @@
+@page
+@model TestProject.Web.Pages.ContactModel
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "_MyLayout";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">Contact Us</h1>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Send us a message</h4>
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" asp-for="Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" asp-for="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Subject</label>
+                            <input type="text" class="form-control" asp-for="Subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" asp-for="Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+
+                    @if(!string.IsNullOrEmpty(Model.SuccessMessage))
+                    {
+                    <div class="alert alert-success mt-3">
+                        @Model.SuccessMessage
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-map-marker-alt text-primary"></i> Address</h5>
+                    <p>Hanoi, Vietnam</p>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-phone text-primary"></i> Phone</h5>
+                    <p>+84 123 456 789</p>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5><i class="fas fa-envelope text-primary"></i> Email</h5>
+                    <p>info@mywebsite.com</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5><i class="fas fa-clock text-primary"></i> Working Hours</h5>
+                    <p>
+                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                        Saturday: 10:00 AM - 4:00 PM<br>
+                        Sunday: Closed
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
