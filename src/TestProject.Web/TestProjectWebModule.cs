@@ -28,6 +28,7 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
+using TestProject.Web.Services;
 
 namespace TestProject.Web;
 
@@ -84,6 +85,9 @@ public class TestProjectWebModule : AbpModule
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+
+        context.Services.AddHttpContextAccessor();
+        context.Services.AddScoped<VnPayService>();
     }
 
     private void ConfigureAuthentication(ServiceConfigurationContext context)

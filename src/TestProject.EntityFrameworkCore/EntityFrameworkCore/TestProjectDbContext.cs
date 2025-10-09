@@ -30,6 +30,8 @@ public class TestProjectDbContext :
     public DbSet<Class> Classes { get; set; }        // ← Thêm
     public DbSet<Student> Students { get; set; }     // ← Thêm
     public DbSet<ClassStudent> ClassStudents { get; set; } // ← Thêm
+    public DbSet<Payment> Payments { get; set; }
+
     #region Entities from the modules
 
     //Identity

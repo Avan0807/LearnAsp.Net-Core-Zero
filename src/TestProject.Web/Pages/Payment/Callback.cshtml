@@ -1,0 +1,97 @@
+@page
+@model TestProject.Web.Pages.Payment.CallbackModel
+@{
+    ViewData["Title"] = "Payment Result";
+    Layout = "_MyLayout";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            @if (Model.Success)
+            {
+            <div class="card border-success">
+                <div class="card-header bg-success text-white">
+                    <h4><i class="fas fa-check-circle"></i> Payment Successful!</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-success">
+                        <strong>Your payment has been processed successfully.</strong>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <th width="200">Order ID</th>
+                            <td>@Model.OrderId</td>
+                        </tr>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <td>@Model.TransactionId</td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            <td><strong class="text-success">@Model.Amount.ToString("N0") VND</strong></td>
+                        </tr>
+                        <tr>
+                            <th>Bank</th>
+                            <td>@Model.BankCode</td>
+                        </tr>
+                        <tr>
+                            <th>Card Type</th>
+                            <td>@Model.CardType</td>
+                        </tr>
+                        <tr>
+                            <th>Payment Date</th>
+                            <td>@Model.PaymentDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                        </tr>
+                    </table>
+
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                        <a href="/Payment/Checkout" class="btn btn-success">
+                            <i class="fas fa-credit-card"></i> Make Another Payment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+            else
+            {
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Payment Cancelled or Failed</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <strong>@Model.Message</strong>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.OrderId))
+                        {
+                    <p><strong>Order ID:</strong> @Model.OrderId</p>
+                        }
+
+                    <p>Your payment was not completed. This could be due to:</p>
+                    <ul>
+                        <li>Transaction was cancelled by you</li>
+                        <li>Payment timeout</li>
+                        <li>Insufficient balance</li>
+                        <li>Technical error</li>
+                    </ul>
+
+                    <div class="text-center mt-4">
+                        <a href="/Payment/Checkout" class="btn btn-warning">
+                            <i class="fas fa-redo"></i> Try Again
+                        </a>
+                        <a href="/" class="btn btn-secondary">
+                            <i class="fas fa-home"></i> Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

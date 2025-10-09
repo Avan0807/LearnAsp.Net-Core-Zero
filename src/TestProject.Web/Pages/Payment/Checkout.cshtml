@@ -1,0 +1,51 @@
+@page
+@model TestProject.Web.Pages.Payment.CheckoutModel
+@{
+    ViewData["Title"] = "Payment Checkout";
+    Layout = "_MyLayout";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4><i class="fas fa-credit-card"></i> Payment Checkout</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Order Info *</label>
+                            <input type="text" class="form-control" asp-for="OrderInfo"
+                                   placeholder="Payment for order #12345" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Amount (VND) *</label>
+                            <input type="number" class="form-control" asp-for="Amount"
+                                   placeholder="100000" required>
+                            <small class="text-muted">Minimum: 10,000 VND</small>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> You will be redirected to VNPay payment gateway
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <strong>Test Card Info:</strong><br>
+                            Bank: NCB<br>
+                            Card Number: 9704198526191432198<br>
+                            Card Holder: NGUYEN VAN A<br>
+                            Issue Date: 07/15<br>
+                            OTP: 123456
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-arrow-right"></i> Proceed to Payment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
